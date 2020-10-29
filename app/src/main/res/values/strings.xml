@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">ATP TPC</string>
+    <string name="app_name">Exercise #1</string>
+    <string name="ol_mundo">Hello 👋</string>
 </resources>
