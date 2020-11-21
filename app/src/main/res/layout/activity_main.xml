@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-
+    android:id="@+id/root_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,6 +19,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.682" />
 
+    <TextView
+        android:id="@+id/greetings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/greetings"
+        app:layout_constraintEnd_toStartOf="@+id/btn_show"
+        app:layout_constraintBottom_toBottomOf="@id/btn_show"
+        android:padding="10dp"
+        android:layout_marginEnd="35dp"
+        />
+
+
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
@@ -32,7 +45,7 @@
         app:srcCompat="@drawable/c_o_imagem" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_show"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"

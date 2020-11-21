@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Exercise #1</string>
     <string name="ol_mundo">Hello 👋</string>
+
+    <string name="greetings">Hello %s </string>
+
+    <string name="hint_username">Your username here</string>
+    <string name="hint_password">Your password here</string>
+    <string name="save_credentials">Save Credentials</string>
+    <string name="error_credentials">Credentials Invalid</string>
+
+    <string name="action_authenticate">Authenticate</string>
 </resources>

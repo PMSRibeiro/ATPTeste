@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.provider.MediaStore
+import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AlertDialogLayout
 import android.view.View
 import android.widget.Button
@@ -27,27 +29,43 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<Button>(R.id.button).setOnClickListener {
-            //openNativeCamera()
-            //openDetailsActivity()
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-            builder.setTitle("Show Simple Dialog")
-            builder.setMessage("This Is A Simple Alert Dialog Show In Android")
-            builder.setIcon(R.drawable.ic_launcher_background)
+        val intent = getIntent()
+        val greetings = intent.getStringExtra("OLA")
+        findViewById<TextView>(R.id.greetings).setText("Hello " +greetings)
 
-            builder.setPositiveButton("Ok", DialogInterface.OnClickListener { dialog, which ->
-                openDetailsActivity()
-            })
-            builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which ->
-                dialog.dismiss()
-            })
-            builder.setNeutralButton("No", DialogInterface.OnClickListener { dialog, which ->
-                dialog.dismiss()
-            })
 
-            val alertDialog: AlertDialog = builder.create()
-            alertDialog.show()
+        findViewById<Button>(R.id.btn_show).setOnClickListener {
+            val snackbar = Snackbar.make(it, "Welcome", Snackbar.LENGTH_INDEFINITE )
+            snackbar.setAction("Parar", View.OnClickListener {
+                timer.cancel()
+            })
+//            snackbar.setAction("Começar", View.OnClickListener {
+//                startcountDownTimer(untilFinished)
+//            })
+            snackbar.setActionTextColor(ContextCompat.getColor(this,R.color.black))
+            snackbar.show()
         }
+//        findViewById<Button>(R.id.btn_show).setOnClickListener {
+//            //openNativeCamera()
+//            //openDetailsActivity()
+//            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+//            builder.setTitle("Show Simple Dialog")
+//            builder.setMessage("This Is A Simple Alert Dialog Show In Android")
+//            builder.setIcon(R.drawable.ic_launcher_background)
+//
+//            builder.setPositiveButton("Ok", DialogInterface.OnClickListener { dialog, which ->
+//                openDetailsActivity()
+//            })
+//            builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which ->
+//                dialog.dismiss()
+//            })
+//            builder.setNeutralButton("No", DialogInterface.OnClickListener { dialog, which ->
+//                dialog.dismiss()
+//            })
+//
+//            val alertDialog: AlertDialog = builder.create()
+//            alertDialog.show()
+//        }
     }
 
     override fun onResume() {
