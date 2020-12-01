@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Exercicío #1</string>
+    <string name="ol_mundo">Olá Mundo!!</string>
+
+    <string name="greetings">Olá %s </string>
+
+    <string name="hint_username">Nome de utilizador aqui</string>
+    <string name="hint_password">Introduza a palavra-chave</string>
+    <string name="save_credentials">Guardar Credenciais</string>
+    <string name="error_credentials">Credenciais Inválidas</string>
+
+    <string name="action_authenticate">Autenticação</string>
+
+    <string name="snackbar_main">Olá</string>
+    <string name="snackbar_btn">Aceitar</string>
+    <string name="snackbar_message">Adeus!</string>
+
+    <string name="btn_simpleDialog">Mostrar Opções de Diálogo</string>
+    <string name="btn_details">Ir para os Details</string>
+    <string name="btn_snackbar">Mostrar Snackbar</string>
+    <string name="btn_camera">Ativar Câmera</string>
+
+</resources>
