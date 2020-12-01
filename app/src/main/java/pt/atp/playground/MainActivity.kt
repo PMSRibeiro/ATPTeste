@@ -5,18 +5,26 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.media.Image
-import android.support.v7.app.AppCompatActivity
+
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.provider.MediaStore
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.AlertDialogLayout
+
 import android.view.View
+import android.view.textclassifier.TextClassifierEvent
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import java.lang.ref.ReferenceQueue
+import androidx.lifecycle.*
+import org.intellij.lang.annotations.Language
+
 
 private const val REQUEST_IMAGE_CAPTURE = 100
 
@@ -24,6 +32,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var timer: CountDownTimer
     private var untilFinished = 10000L
+
+    private val viewModel : MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,43 +45,53 @@ class MainActivity : AppCompatActivity() {
 
 
         findViewById<Button>(R.id.btn_show).setOnClickListener {
-            val snackbar = Snackbar.make(it, "Welcome", Snackbar.LENGTH_INDEFINITE )
-            snackbar.setAction("Parar", View.OnClickListener {
-                timer.cancel()
-            })
-//            snackbar.setAction("Começar", View.OnClickListener {
-//                startcountDownTimer(untilFinished)
-//            })
-            snackbar.setActionTextColor(ContextCompat.getColor(this,R.color.black))
-            snackbar.show()
+            findViewById<TextView>(R.id.coutdown).visibility = View.VISIBLE
+            startTimer()
         }
-//        findViewById<Button>(R.id.btn_show).setOnClickListener {
-//            //openNativeCamera()
-//            //openDetailsActivity()
-//            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-//            builder.setTitle("Show Simple Dialog")
-//            builder.setMessage("This Is A Simple Alert Dialog Show In Android")
-//            builder.setIcon(R.drawable.ic_launcher_background)
-//
-//            builder.setPositiveButton("Ok", DialogInterface.OnClickListener { dialog, which ->
-//                openDetailsActivity()
+
+        findViewById<Button>(R.id.btn_counter).setOnClickListener {
+            findViewById<TextView>(R.id.coutdown).visibility = View.VISIBLE
+            startcountDownTimer(untilFinished)
+        }
+
+        val tvStartTimer = findViewById<TextView>(R.id.coutdown)
+        viewModel.timerLiveData.observe(this) { counter ->
+            tvStartTimer.text = counter.toString()
+        }
+//            val snackbar = Snackbar.make(it, "Welcome", Snackbar.LENGTH_INDEFINITE )
+//            snackbar.setAction("Parar", View.OnClickListener {
+//                timer.cancel()
 //            })
-//            builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which ->
-//                dialog.dismiss()
-//            })
-//            builder.setNeutralButton("No", DialogInterface.OnClickListener { dialog, which ->
-//                dialog.dismiss()
-//            })
-//
-//            val alertDialog: AlertDialog = builder.create()
-//            alertDialog.show()
+////            snackbar.setAction("Começar", View.OnClickListener {
+////                startcountDownTimer(untilFinished)
+////            })
+//            snackbar.setActionTextColor(ContextCompat.getColor(this,R.color.black))
+//            snackbar.show()
 //        }
+
+        findViewById<Button>(R.id.SimpleDialog).setOnClickListener{
+            showSimpleDialog()
+        }
+
+        findViewById<Button>(R.id.details).setOnClickListener {
+            openDetailsActivity()
+        }
+
+        findViewById<Button>(R.id.snackbar).setOnClickListener {
+            showSnackbar()
+        }
+
+        findViewById<Button>(R.id.camera).setOnClickListener {
+            openNativeCamera()
+        }
     }
 
     override fun onResume() {
         super.onResume()
 
-        startcountDownTimer(untilFinished)
+        if (untilFinished < 10000L) {
+            startcountDownTimer(untilFinished)
+        }
     }
 
     override fun onPause() {
@@ -117,7 +137,7 @@ class MainActivity : AppCompatActivity() {
         timer.start()
     }
 
-    fun showSimpleDialog(view: View) {
+    private fun showSimpleDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("Show Simple Dialog")
         builder.setMessage("This Is A Simple Alert Dialog Show In Android")
@@ -135,5 +155,37 @@ class MainActivity : AppCompatActivity() {
 
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
+    }
+
+    private fun showSnackbar() {
+        Snackbar.make(
+            findViewById<ConstraintLayout>(R.id.root_layout),
+            R.string.snackbar_main,
+            Snackbar.LENGTH_LONG
+        )
+            .setAction(R.string.snackbar_btn) {
+                Toast.makeText(
+                    this@MainActivity,
+                        (R.string.snackbar_message),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .show()
+
+//        val snackbar = Snackbar.make(it, "Welcome", Snackbar.LENGTH_INDEFINITE )
+//        snackbar.setAction("Parar", View.OnClickListener {
+//            timer.cancel()
+//        })
+////            snackbar.setAction("Começar", View.OnClickListener {
+////                startcountDownTimer(untilFinished)
+////            })
+//        snackbar.setActionTextColor(ContextCompat.getColor(this,R.color.black))
+//        snackbar.show()
+    }
+
+    private fun startTimer() {
+        viewModel.startTimer(15000)
+
+
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/root_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,11 +13,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ol_mundo"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.682" />
+        app:layout_constraintTop_toBottomOf="@id/greetings"
+        app:layout_constraintRight_toRightOf="@id/greetings"
+        app:layout_constraintLeft_toLeftOf="@id/greetings"
+        android:layout_marginTop="170dp"
+        android:visibility="invisible"
+        />
+<!--    app:layout_constraintRight_toLeftOf="@id/greetings"-->
+<!--    app:layout_constraintTop_toTopOf="@id/greetings"-->
 
     <TextView
         android:id="@+id/greetings"
@@ -31,17 +36,16 @@
         />
 
 
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.309"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/c_o_imagem" />
 
     <Button
@@ -56,12 +60,59 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.128" />
 <!--        android:background="@drawable/ic_launcher_foreground"-->
+    <Button
+        android:id="@+id/btn_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.128" />
 
     <Button
         android:id="@+id/SimpleDialog"
-        android:layout_width="match_parent"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
-        android:text="Show Simple Dialog"
-        android:onClick="showSimpleDialog"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="15dp"
+        android:text="@string/btn_simpleDialog"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/details"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="15dp"
+        android:text="@string/btn_details" />
+
+    <Button
+        android:id="@+id/camera"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/details"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="15dp"
+        android:text="@string/btn_camera"
+        />
+
+    <Button
+        android:id="@+id/snackbar"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/SimpleDialog"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="15dp"
+        android:text="@string/btn_snackbar"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,4 +10,13 @@
     <string name="error_credentials">Credentials Invalid</string>
 
     <string name="action_authenticate">Authenticate</string>
+
+    <string name="snackbar_main">Hello</string>
+    <string name="snackbar_btn">Accept</string>
+    <string name="snackbar_message">Goodbye</string>
+
+    <string name="btn_simpleDialog">Show Simple Dialog</string>
+    <string name="btn_details">Go to Details</string>
+    <string name="btn_snackbar">Show Snackbar</string>
+    <string name="btn_camera">Activate Camera</string>
 </resources>
